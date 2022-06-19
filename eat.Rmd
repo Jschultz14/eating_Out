@@ -33,9 +33,13 @@ mydata <- na.omit(mydata)
 ```
 
 
+```{r}
+barchartGC(~race + eatout,data=mydata)
+barchartGC(~race + eatout,data=mydata, type="percent")
 
-
-
+```
+  
+Based on the above data, we can see that roughly 960 white people eat out, while 200 white people opt to stay home. As for black people, 200 decide to eat out while 100 stay in. As for the other races, around 100 people will eat out while 50 stay in. Percentage wise, this would mean 80% of white people eat out while the rest stay in, and 70% of black people and other races go out and 20% stay in.  
 
 
 
