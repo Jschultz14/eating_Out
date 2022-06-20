@@ -42,6 +42,7 @@ barchartGC(~race + eatout,data=mydata, type="percent")
 Based on the above data, we can see that roughly 960 white people eat out, while 200 white people opt to stay home. As for black people, 200 decide to eat out while 100 stay in. As for the other races, around 100 people will eat out while 50 stay in. Percentage wise, this would mean roughly 80% of white people eat out while the rest stay in, and about 70% of black people and other races go out and 20% stay in.  
 
 
+
 ```{r}
 table1 <- xtabs(~race + eatout,data=mydata)
 rowPerc(table1)
@@ -51,3 +52,16 @@ colPerc(table1)
 Based on the numerical summaries with the accurate numerical data, we can see that 83.13% of white people eat out while 16.87% stay in, 69.19% of black people eat out and 30.81% stay in, and 72.12% of all other races eat out while 27.88% stay in. This shows that black people and other races are slightly less likely to eat out in comparison to white people. Black people and other races show similar rates of eating out. Additionally, the table above shows that white people where among the majority who stated they eat out. Out of all the people that said yes to eating out, 81.69% were white, 11.83% were black, and 6.48% were of another race. 
 
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+```
+  
+According to the chi-squared test, the indicated p-value is an incredibly small number which would insinuate that there is a difference between the frequency of eating out and racial groups. As such, we reject the null hypothesis. To show which groups are different, a different type of test is required. 
+
+
+```{r}
+fisherXY(mydata$race,mydata$eatout, printAll = TRUE)
+```
+
+Based on the test above (this test compares two groups at one time), we can clearly see that there is a difference in the frequency white and black people eat out. This is shown by the very low p-value 1.183e-05. In the same way, there is a difference in the frequency that white people eat out in comparison to those of other races. This is exemplified by the low p-value of 0.00721. Furthermore, this test also shows that there is little to no difference in the frequency that black people and those of other races eat out. This is shown by the p-value of 0.599.
